@@ -1,4 +1,4 @@
-Скрипт [**Inno Setup**](https://github.com/jrsoftware/issrc) для сборки установщика [Daggerfall Unity](https://github.com/Interkarma/daggerfall-unity/releases).
+Скрипт [**Inno Setup**](https://github.com/jrsoftware/issrc) для сборки установщика [Daggerfall Unity](https://github.com/Interkarma/daggerfall-unity/).
 
 С прицелом на удобство работы и некую портативность используются относительные пути. \
 Батник [Create_structure.bat](Create_structure.bat) создаёт в месте использования структуру каталогов, рабочую среду, если можно так выразиться, которую я использовал для сборки инсталлятора:
@@ -13,3 +13,5 @@
     - **x32**
     - **x64**
 + **Installer_Output** служит для вывода готового установщика после компиляции в Inno Setup.
+
+В сборе установщик опубликован на [TESAll](https://tesall.club/files/modi-dlya-drugikh-igr/10820-daggerfall-unity-installer).
