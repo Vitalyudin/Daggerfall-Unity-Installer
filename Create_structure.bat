@@ -7,11 +7,9 @@ mkdir .\Installer_Files\DFU\x64
 :: Сюда идут ресурсы Даггерфолла
 mkdir .\Installer_Files\GameFiles
 :: Папка под изначальный инишник DFU, используемый при установке, и сам инишник
-mkdir .\Installer_Files\Initial_config
-Set settingsini=".\Installer_Files\Initial_config\settings.ini"
-(Echo ^[Daggerfall^]
-Echo MyDaggerfallPath = 
-)>"%settingsini%"
+mkdir .\Installer_Files\Optional_things
+@echo off
+  break>".\Installer_Files\Optional_things\Portable.txt"
 :: Папки под лаунчер
 mkdir .\Installer_Files\Launcher
 mkdir .\Installer_Files\Launcher\x32
