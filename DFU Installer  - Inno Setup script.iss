@@ -31,6 +31,7 @@ AllowCancelDuringInstall=1
 CreateUninstallRegKey=0
 PrivilegesRequired=Admin
 Output=1
+Uninstallable=not IsTaskSelected('portable_file')
 
 [Code]
 // Получаем путь непосредственно к Program files без приписки (x86) для DefaultDirName
@@ -84,7 +85,7 @@ Name: "{app}\DaggerfallUnity\DaggerfallUnity_Data\StreamingAssets\GameFiles\SAVE
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 // Даём чекбокс для портативной установки
-Name: "portable_file"; Description: "Использовать папку установки вместо AppData для хранения игровых данных";  Flags: unchecked
+Name: "portable_file"; Description: "Использовать папку установки вместо AppData для хранения игровых данных и не создавать деинсталлятор";  Flags: unchecked
 
 // Даём чекбокс на запуск по окончании установки
 [Run]
