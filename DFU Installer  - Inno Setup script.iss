@@ -8,7 +8,6 @@
 #define DFUInstallerFilesDir ".\Installer_Files"
 #define DFUInstallerBuildDir ".\Installer_Output"
 
-
 [Setup]
 AppId={{здесь должен быть GUID приложения}
 AppName={#DFUName}
@@ -30,8 +29,9 @@ UseSetupLdr=1
 AllowCancelDuringInstall=1
 CreateUninstallRegKey=0
 PrivilegesRequired=Admin
+DisableProgramGroupPage=yes
 Output=1
-Uninstallable=not IsTaskSelected('portable_file')
+Uninstallable=not WizardIsTaskSelected('portable_file')
 
 [Code]
 // Получаем путь непосредственно к Program files без приписки (x86) для DefaultDirName
@@ -49,11 +49,14 @@ Name: "ru"; MessagesFile: "compiler:Languages\Russian.isl"
 [CustomMessages]
 //en.DFUUninstallerName=Uninstall
 ru.DFUUninstallerName=Удалить
+ru.CreateStartMenuIcons=Создать ярлыки в меню Пуск
+ru.PortableOption=Портативная установка: использовать папку игры вместо AppData для хранения игровых данных и не создавать деинсталлятор
+ru.CreateDesktopIcon=Добавить ярлык на рабочий стол
 
 // Постим ярлыки в Пуск
 [Icons]
-Name: "{group}\{#DFUName} Launcher"; Filename: "{app}\{#DFUExeName}"   
-Name: "{group}\{cm:DFUUninstallerName}"; Filename: "{app}\{#DFUUninstaller}"
+Name: "{group}\{#DFUName} Launcher"; Filename: "{app}\{#DFUExeName}"; Tasks: start_menu_folder
+Name: "{group}\{cm:DFUUninstallerName}"; Filename: "{app}\{#DFUUninstaller}"; Tasks: start_menu_folder; Check: "not WizardIsTaskSelected('portable_file')"
 Name: "{commondesktop}\{#DFUName}"; Filename: "{app}\{#DFUExeName}"; Tasks: desktopicon
 
 [InstallDelete]
@@ -81,11 +84,12 @@ Name: "{app}\DaggerfallUnity\DaggerfallUnity_Data\StreamingAssets\GameFiles\SAVE
 Name: "{app}\DaggerfallUnity\DaggerfallUnity_Data\StreamingAssets\GameFiles\SAVE4\"; 
 Name: "{app}\DaggerfallUnity\DaggerfallUnity_Data\StreamingAssets\GameFiles\SAVE5\"; 
 
-// Даём чекбокс на создание ярлыка на рабстоле, по умолчанию не отмечен
+// Даём чекбокс на создание ярлыков, по умолчанию не отмечен
 [Tasks]
+Name: "start_menu_folder"; Description: "{cm:CreateStartMenuIcons}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 // Даём чекбокс для портативной установки
-Name: "portable_file"; Description: "Использовать папку установки вместо AppData для хранения игровых данных и не создавать деинсталлятор";  Flags: unchecked
+Name: "portable_file"; Description: "{cm:PortableOption}";  Flags: unchecked
 
 // Даём чекбокс на запуск по окончании установки
 [Run]
