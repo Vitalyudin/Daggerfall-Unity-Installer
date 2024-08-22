@@ -6,7 +6,7 @@ mkdir .\Installer_Files\DFU\x32
 mkdir .\Installer_Files\DFU\x64
 :: Сюда идут ресурсы Даггерфолла
 mkdir .\Installer_Files\GameFiles
-:: Папка под изначальный инишник DFU, используемый при установке, и сам инишник
+:: Папка под опциональные штуки - пока что только признак портативной установки
 mkdir .\Installer_Files\Optional_things
 @echo off
   break>".\Installer_Files\Optional_things\Portable.txt"
