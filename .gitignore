@@ -1,2 +1,10 @@
+# Бэкапы редактора Inno Setup
 *.~is
-/Installer_Files/Optional_things
+
+# Содержимое папок раскладывается локально (см. Create_structure.bat):
+# сборки DFU, файлы оригинального Daggerfall, лаунчер и готовый установщик
+/Installer_Files/DFU/
+/Installer_Files/GameFiles/
+/Installer_Files/Launcher/
+/Installer_Files/Optional_things/
+/Installer_Output/
