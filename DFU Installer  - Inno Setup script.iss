@@ -1,5 +1,7 @@
 ﻿#define DFUName "Daggerfall Unity"                               
 #define DFUVersion "1.1.1"           
+// Тег релиза на GitHub, из которого взяты файлы в Installer_Files\DFU - по нему лаунчер проверяет обновления
+#define DFUReleaseTag "v1.1.1-cve-2025"
 #define DFUPublisher "Gavin 'Interkarma' Clayton; Bethesda Softworks"
 #define DFUExeName "DaggerfallUnityLauncher.exe"     
 #define DFUUninstaller "unins000.exe"    
@@ -74,9 +76,21 @@ Source: "{#DFUInstallerFilesDir}\DFU\x32\*"; Excludes: "*StreamingAssets\GameFil
 Source: "{#DFUInstallerFilesDir}\GameFiles\*"; DestDir: "{app}\DaggerfallUnity\DaggerfallUnity_Data\StreamingAssets\GameFiles\"; Flags: ignoreversion recursesubdirs createallsubdirs 
 // Файл для портативной	 установки
 Source: "{#DFUInstallerFilesDir}\Optional_things\Portable.txt"; DestDir: "{app}\DaggerfallUnity"; Flags: ignoreversion; Tasks: portable_file  
+// Настройки лаунчера: пользователи могут в него писать, при переустановке не перезаписываем
+Source: "{#DFUInstallerFilesDir}\DaggerfallUnityLauncher.ini"; DestDir: "{app}"; Flags: onlyifdoesntexist; Permissions: users-modify
+
+// Тег установленного релиза для проверки обновлений в лаунчере
+[INI]
+Filename: "{app}\DaggerfallUnityLauncher.ini"; Section: "Game"; Key: "Version"; String: "{#DFUReleaseTag}"
+
+[UninstallDelete]
+Type: files; Name: "{app}\DaggerfallUnityLauncher.ini"
 
 // Создаём необходимые для работы игры пустые папки сейвов
 [Dirs]
+// Папка игры открыта на запись: лаунчер обновляет игру без прав администратора,
+// а портативная версия может хранить в ней сохранения
+Name: "{app}\DaggerfallUnity"; Permissions: users-modify
 Name: "{app}\DaggerfallUnity\DaggerfallUnity_Data\StreamingAssets\GameFiles\SAVE0"; 
 Name: "{app}\DaggerfallUnity\DaggerfallUnity_Data\StreamingAssets\GameFiles\SAVE1\"; 
 Name: "{app}\DaggerfallUnity\DaggerfallUnity_Data\StreamingAssets\GameFiles\SAVE2\"; 
