@@ -45,11 +45,15 @@ end;
 
 [Languages]
 // Выбираем языки установщика
-//Name: "en"; MessagesFile: "compiler:Default.isl"    // Английский пока не нужен, и не знаю, понадобится ли
 Name: "ru"; MessagesFile: "compiler:Languages\Russian.isl"
+Name: "en"; MessagesFile: "compiler:Default.isl"
 
 [CustomMessages]
-//en.DFUUninstallerName=Uninstall
+en.DFUUninstallerName=Uninstall
+en.CreateStartMenuIcons=Create Start Menu shortcuts
+en.PortableOption=Portable installation: store game data in the game folder instead of AppData and do not create an uninstaller
+en.CreateDesktopIcon=Create a desktop shortcut
+
 ru.DFUUninstallerName=Удалить
 ru.CreateStartMenuIcons=Создать ярлыки в меню Пуск
 ru.PortableOption=Портативная установка: использовать папку игры вместо AppData для хранения игровых данных и не создавать деинсталлятор
